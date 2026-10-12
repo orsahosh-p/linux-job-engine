@@ -44,7 +44,7 @@ linux-job-engine/
  - [x] Dynamic Array, FIFO Queue, Binary Heap
  - [x] Linux Process Management
  - [x] FCFS Scheduling
- - [ ] Priority Scheduling
+ - [x] Priority Scheduling
  - [ ] SJF and Round Robin
  - [ ] Multithreading and Synchronization
  - [ ] IPC and Networking
