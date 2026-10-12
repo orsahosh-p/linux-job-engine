@@ -5,7 +5,7 @@ CPPFLAGS = -Iinclude
 ALL_GCC = $(CC) $(CFLAGS) $(CPPFLAGS)
 
 TARGET = build/job_engine
-OBJECTS = build/main.o build/job.o build/job_vector.o build/job_queue.o build/process.o build/job_heap.o build/scheduler.o
+OBJECTS = build/main.o build/job.o build/job_vector.o build/job_queue.o build/process.o build/job_heap.o build/scheduler.o build/priority_scheduler.o
 
 .PHONY: all run clean
 
@@ -30,6 +30,9 @@ build/job_heap.o: src/job_heap.c include/job_heap.h
 	$(ALL_GCC) -c $< -o $@
 
 build/scheduler.o: src/scheduler.c include/scheduler.h
+	$(ALL_GCC) -c $< -o $@
+
+build/priority_scheduler.o: src/priority_scheduler.c include/priority_scheduler.h
 	$(ALL_GCC) -c $< -o $@
 
 $(TARGET): $(OBJECTS)

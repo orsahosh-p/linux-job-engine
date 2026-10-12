@@ -3,6 +3,7 @@
 #include "job_vector.h"
 #include "job_queue.h"
 #include "scheduler.h"
+#include "priority_scheduler.h"
 
 int main(void){
 
@@ -10,10 +11,12 @@ int main(void){
 
 	JobVector* vector = job_vector_create(3);
 	JobQueue* queue = job_queue_create();
+	JobHeap* heap = job_heap_create();
 
-	if(vector == NULL || queue == NULL){
+	if(vector == NULL || queue == NULL || heap == NULL){
 		job_queue_destroy(queue);
 		job_vector_destroy(vector);
+		job_heap_destroy(heap);
 		return 1;
 	}
 
@@ -23,8 +26,10 @@ int main(void){
 		"true"
 	};
 
+	int priorities[] = {3, 9, 5};
+
 	for(size_t i = 0; i < 3; i++){
-		Job* job = job_create(i + 1, commands[i], 5);
+		Job* job = job_create(i + 1, commands[i], priorities[i]);
 
 		if(job == NULL){
 			goto cleanup;
@@ -35,7 +40,7 @@ int main(void){
 			goto cleanup;
 		}
 
-		if(!job_queue_enqueue(queue, job)){
+		if(!job_heap_push(heap, job)){
 			goto cleanup;
 		}
 	}
@@ -46,9 +51,9 @@ int main(void){
 		goto cleanup;
 	}
 
-	printf("Starting FCFS Scheduler...\n\n");
+	printf("Starting Priority + FCFS Scheduler...\n\n");
 
-	int result = scheduler_run_fcfs(scheduler);
+	int result = priority_scheduler_run(scheduler, heap);
 
 	printf("\n===== RESULTS =====\n");
 
@@ -62,6 +67,7 @@ int main(void){
 	scheduler_destroy(scheduler);
 	job_queue_destroy(queue);
 	job_vector_destroy(vector);
+	job_heap_destroy(heap);
 
 	return result;
 
@@ -69,5 +75,6 @@ int main(void){
 cleanup:
 	job_queue_destroy(queue);
 	job_vector_destroy(vector);
+	job_heap_destroy(heap);
 	return 1;
 }

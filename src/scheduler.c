@@ -43,6 +43,8 @@ int scheduler_run_fcfs(Scheduler *scheduler){
 
 		Job* job = job_queue_dequeue(scheduler->queue);
 
+		printf("[SCHEDULER] Starting Job %lu (priority=%d)\n", (unsigned long)job->id, job->priority);
+
 		if(job == NULL){
 			return 1;
 		}
@@ -97,6 +99,8 @@ int scheduler_run_fcfs(Scheduler *scheduler){
 
 			failed = 1;
 		}
+
+		printf("[SCHEDULER] Finished Job %lu (exit_code=%d)\n", (unsigned long)job->id, job->exit_code);
 
 		scheduler->current = NULL;
 	}
