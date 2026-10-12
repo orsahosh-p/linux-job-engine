@@ -1,0 +1,17 @@
+# Compiled files
+
+build/
+*.o
+*.out
+linux_job_engine
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+
+# Debugging
+core
+core.*
+*.gcda
+*.gcno
