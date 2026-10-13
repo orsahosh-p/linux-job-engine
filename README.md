@@ -14,6 +14,9 @@ Data Structures, Algorithms, and Software Engineering.
  - Linux process managment (fork, execvp, waitpid)
  - FCFS Scheduling
 
+## Architecture
+![](./Linux Job Engine Architecture.png)
+
 ## Technologies
 
  - C11
