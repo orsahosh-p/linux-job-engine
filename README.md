@@ -15,7 +15,7 @@ Data Structures, Algorithms, and Software Engineering.
  - FCFS Scheduling
 
 ## Architecture
-![](./Linux Job Engine Architecture.png)
+![Architecture](Linux%20Job%20Engine%20Architecture.png)
 
 ## Technologies
 
