@@ -1,17 +1,17 @@
 CC = gcc
-CFLAGS = -std=c11 -Wall -Wextra -Wpedantic -g
+CFLAGS = -std=c11 -Wall -Wextra -Wpedantic -g -pthread
 CPPFLAGS = -Iinclude
 
 ALL_GCC = $(CC) $(CFLAGS) $(CPPFLAGS)
 
 TARGET = build/job_engine
-OBJECTS = build/main.o build/job.o build/job_vector.o build/job_queue.o build/process.o build/job_heap.o build/scheduler.o build/priority_scheduler.o
+OBJECTS = build/main.o build/job.o build/job_vector.o build/job_queue.o build/process.o build/job_heap.o build/scheduler.o build/priority_scheduler.o build/worker.o build/engine.o
 
 .PHONY: all run clean
 
 all: $(TARGET)
 
-build/main.o: src/main.c include/job.h include/job_vector.h include/job_queue.h include/process.h include/job_heap.h
+build/main.o: src/main.c include/job.h include/job_vector.h include/job_queue.h include/process.h include/job_heap.h include/engine.h include/worker.h include/scheduler.h
 	$(ALL_GCC) -c $< -o $@
 
 build/job.o: src/job.c include/job.h
@@ -33,6 +33,12 @@ build/scheduler.o: src/scheduler.c include/scheduler.h
 	$(ALL_GCC) -c $< -o $@
 
 build/priority_scheduler.o: src/priority_scheduler.c include/priority_scheduler.h
+	$(ALL_GCC) -c $< -o $@
+
+build/worker.o: src/worker.c include/worker.h
+	$(ALL_GCC) -c $< -o $@
+
+build/engine.o: src/engine.c include/engine.h
 	$(ALL_GCC) -c $< -o $@
 
 $(TARGET): $(OBJECTS)
