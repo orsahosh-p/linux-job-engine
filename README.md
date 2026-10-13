@@ -46,7 +46,7 @@ linux-job-engine/
  - [x] FCFS Scheduling
  - [x] Priority Scheduling
  - [ ] SJF and Round Robin
- - [ ] Multithreading and Synchronization
+ - [x] Multithreading and Synchronization
  - [ ] IPC and Networking
 
 ## Purpose
