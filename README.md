@@ -13,6 +13,7 @@ Data Structures, Algorithms, and Software Engineering.
  - Binary Max Heap
  - Linux process managment (fork, execvp, waitpid)
  - FCFS Scheduling
+ - Multithreading and Synchronization
 
 ## Architecture
 ![Architecture](Linux%20Job%20Engine%20Architecture.png)
